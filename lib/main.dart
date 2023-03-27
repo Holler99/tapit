@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -102,6 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const Image(
+              image: AssetImage("assets/cat-png-17.png")
+            )
           ],
         ),
       ),
