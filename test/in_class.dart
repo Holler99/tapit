@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:tapit/ConversationButton.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 Map<String, dynamic> conversationMap = {
   "conversations" : [
     <String, dynamic> {
@@ -20,7 +23,13 @@ Map<String, dynamic> conversationMap = {
 };
 
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if(!kIsWeb) {
+    await Firebase.initializeApp();
+  }
+
   runApp(const ConversationScreen());
 }
 
