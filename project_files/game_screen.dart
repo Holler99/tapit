@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Tap-it Game'),
         ),
-        body: Column(
+        body: Center(
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
+        )
       ),
     );
   }

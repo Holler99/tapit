@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -10,23 +14,28 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Tap-it Menu'),
+          centerTitle: true,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'TAP IT',
-              style: TextStyle(fontSize: 50),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                'PLAY',
-                style: TextStyle(fontSize: 36),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              const Text(
+                'TAP IT',
+                style: TextStyle(fontSize: 50),
+                //alignment: Alignment.topCenter,
+
               ),
-            ),
-          ],
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text(
+                  'PLAY',
+                  style: TextStyle(fontSize: 36),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
