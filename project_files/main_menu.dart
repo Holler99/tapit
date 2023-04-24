@@ -15,19 +15,19 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(
             children: <Widget>[
-              const SizedBox(
-                //alignment: Alignment.topCenter,
-                child: Text(
+              Container(//contains the tap it text
+                alignment: Alignment.center,
+                  child: const Text(
                   'TAP IT',
-                  style: TextStyle(fontSize: 150),
+                  style: TextStyle(fontSize: 120),
                 ),
               ),
 
-               Container(
+               Container(//contains the play button
                  alignment: Alignment.bottomCenter,
                  child: SizedBox(
-                 width: 200.0,
-                 height: 200.0,
+                 width: 300.0,
+                 height: 300.0,
                   child: ElevatedButton(
                    onPressed: () {},
                    style: ButtonStyle(
@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
                          ),
                        )
                    ),
-                   child: const Text(
+                   child: const Text(//play text in the button
                      'PLAY',
-                     style: TextStyle(fontSize: 60),
+                     style: TextStyle(fontSize: 100),
                    ),
                  ),
                ),
