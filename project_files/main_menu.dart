@@ -12,28 +12,38 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tap-it Menu',
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Tap-it Menu'),
-          centerTitle: true,
-        ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              const Text(
-                'TAP IT',
-                style: TextStyle(fontSize: 50),
+              const SizedBox(
                 //alignment: Alignment.topCenter,
-
-              ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text(
-                  'PLAY',
-                  style: TextStyle(fontSize: 36),
+                child: Text(
+                  'TAP IT',
+                  style: TextStyle(fontSize: 150),
                 ),
               ),
+
+               Container(
+                 alignment: Alignment.bottomCenter,
+                 child: SizedBox(
+                 width: 200.0,
+                 height: 200.0,
+                  child: ElevatedButton(
+                   onPressed: () {},
+                   style: ButtonStyle(
+                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                         RoundedRectangleBorder(
+                             borderRadius: BorderRadius.circular(200)//makes the button a circle
+                         ),
+                       )
+                   ),
+                   child: const Text(
+                     'PLAY',
+                     style: TextStyle(fontSize: 60),
+                   ),
+                 ),
+               ),
+               )
             ],
           ),
         ),
