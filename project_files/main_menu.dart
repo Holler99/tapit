@@ -10,26 +10,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tap-it Menu',
       home: Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              const Text(
+              const Text(//contains the TAP IT header text
                   'TAP IT',
                   style: TextStyle(fontSize: 120),
                 ),
 
-              SizedBox(
+              SizedBox(//this controls how big the button will be
                  width: 300.0,
                  height: 300.0,
                   child: ElevatedButton(
                    onPressed: () {},
                    style: ButtonStyle(
                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                         RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(200)//makes the button a circle
+                         RoundedRectangleBorder(//makes the button a circle
+                             borderRadius: BorderRadius.circular(200)
                          ),
                        )
                    ),
