@@ -16,17 +16,12 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Container(//contains the tap it text
-                alignment: Alignment.center,
-                  child: const Text(
+              const Text(
                   'TAP IT',
                   style: TextStyle(fontSize: 120),
                 ),
-              ),
 
-               Container(//contains the play button
-                 alignment: Alignment.bottomCenter,
-                 child: SizedBox(
+              SizedBox(
                  width: 300.0,
                  height: 300.0,
                   child: ElevatedButton(
@@ -44,7 +39,6 @@ class MyApp extends StatelessWidget {
                    ),
                  ),
                ),
-               )
             ],
           ),
         ),
