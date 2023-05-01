@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             children: <Widget>[
               const Text(//contains the TAP IT header text
                   'TAP IT',
-                  style: TextStyle(fontSize: 120),
+                  style: TextStyle(fontSize: 120, fontWeight: FontWeight.bold),
                 ),
 
               SizedBox(//this controls how big the button will be

@@ -35,17 +35,18 @@ class GameOverScreen extends StatelessWidget{
            children: <Widget>[
 
               const Text(
-              'GAME OVER!',
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              'GAME OVER',
+              style: TextStyle(fontSize: 65, fontWeight: FontWeight.bold),
             ),
+             const SizedBox(height: 60),
              const Text(
-               'Your Score!: 0',
-               style: TextStyle(fontSize: 40),
+               'Your Score: 0',
+               style: TextStyle(fontSize: 50),
              ),
-               const SizedBox(height: 20),
+               const SizedBox(height: 100),
              SizedBox(//menu button, goes back to main menu
-               width: 150,
-               height: 150,
+               width: 160,
+               height: 160,
                child: ElevatedButton(
                  onPressed: () {
                    // Navigate back to the first screen by popping the current route
@@ -63,7 +64,7 @@ class GameOverScreen extends StatelessWidget{
                  ),
                  child: const Text(
                    'MENU',
-                   style: TextStyle(fontSize: 36),
+                   style: TextStyle(fontSize: 45),
                  ),
                ),
              ),
@@ -71,8 +72,8 @@ class GameOverScreen extends StatelessWidget{
              const SizedBox(height: 10),
 
              SizedBox(//exit button, exits the app
-               width: 150,
-               height: 150,
+               width: 160,
+               height: 160,
                child: ElevatedButton(
                  onPressed: () {
                    // Closes the app
@@ -87,7 +88,7 @@ class GameOverScreen extends StatelessWidget{
                  ),
                  child: const Text(
                    'EXIT',
-                   style: TextStyle(fontSize: 36),
+                   style: TextStyle(fontSize: 45),
                  ),
                ),
              ),
