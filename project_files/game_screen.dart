@@ -33,10 +33,9 @@ class GameScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             const Text(
-              'High Score: 0',
+              'Score: 0',
               style: TextStyle(fontSize: 50),
             ),
-            const SizedBox(height: 20),
 
             SizedBox(//controls the button size
               width: 300.0,
@@ -51,7 +50,7 @@ class GameScreen extends StatelessWidget {
                    )
                ),
                 child: const Text(//text in the button
-                'Tap-it!',
+                'TAP-IT!',
                 style: TextStyle(fontSize: 90),
               ),
             ),
