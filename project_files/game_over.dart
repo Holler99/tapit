@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'main_menu.dart';
+//importing the main menu file so the navigator and button
+//will work despite the two screens being in different files
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,7 +15,9 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       //^ this gets rid of the debug tag in the top right of the screen
-      home: GameOverScreen(),
+      home: GameOverScreen(),//had to add this so the navigator would work
+      //because the class needed to be a descendant of
+      //the navigator and my app
     );
   }
 }
@@ -43,7 +49,9 @@ class GameOverScreen extends StatelessWidget{
                  onPressed: () {
                    // Navigate back to the first screen by popping the current route
                    // off the stack.
-                   Navigator.pop(context);
+                   _navigateToPreviousScreen(context);
+                   //will go to next screen when the button is pressed
+
                  },
                  style: ButtonStyle(
                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -89,4 +97,9 @@ class GameOverScreen extends StatelessWidget{
     ),
   );
 }
+
+  void _navigateToPreviousScreen(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainMenu()));
+    //function that allows the navigator to access and display the next screen
+  }
 }

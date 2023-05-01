@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        title: 'Tap-it Game',
       debugShowCheckedModeBanner: false,
       //^ this gets rid of the debug tag in the top right of the screen
     );
@@ -34,7 +33,7 @@ class GameScreen extends StatelessWidget {
           children: <Widget>[
             const Text(
               'Score: 0',
-              style: TextStyle(fontSize: 50),
+              style: TextStyle(fontSize: 80),
             ),
 
             SizedBox(//controls the button size
@@ -51,7 +50,7 @@ class GameScreen extends StatelessWidget {
                ),
                 child: const Text(//text in the button
                 'TAP-IT!',
-                style: TextStyle(fontSize: 90),
+                style: TextStyle(fontSize: 80),
               ),
             ),
             ),
