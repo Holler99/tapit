@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; //allows the systemnavigator to work
 
 import 'main_menu.dart';
 //importing the main menu file so the navigator and button
@@ -74,8 +75,8 @@ class GameOverScreen extends StatelessWidget{
                height: 150,
                child: ElevatedButton(
                  onPressed: () {
-                   // Close the app
-                   // SystemNavigator.pop();
+                   // Closes the app
+                   SystemNavigator.pop();
                  },
                  style: ButtonStyle(
                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
