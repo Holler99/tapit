@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //^ this gets rid of the debug tag in the top right of the screen
       home: MainMenu(),//had to add this so the navigator would work
       //because the class needed to be a descendant of
       //the navigator and my app
