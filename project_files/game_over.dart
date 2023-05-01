@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; //allows the systemnavigator to work
+import 'package:flutter/services.dart'; //allows the SystemNavigator to work
 
 import 'main_menu.dart';
 //importing the main menu file so the navigator and button
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,//this isn't working for some reason. works in the other two files, but not this one
       //^ this gets rid of the debug tag in the top right of the screen
       home: GameOverScreen(),//had to add this so the navigator would work
       //because the class needed to be a descendant of
