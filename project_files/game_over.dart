@@ -36,12 +36,12 @@ class GameOverScreen extends StatelessWidget{
 
               const Text(
               'GAME OVER',
-              style: TextStyle(fontSize: 65, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 68, fontWeight: FontWeight.bold),
             ),
              const SizedBox(height: 60),
              const Text(
                'Your Score: 0',
-               style: TextStyle(fontSize: 50),
+               style: TextStyle(fontSize: 55),
              ),
                const SizedBox(height: 100),
              SizedBox(//menu button, goes back to main menu
