@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
         title: 'Tap-it Game',
+      debugShowCheckedModeBanner: false,
+      //^ this gets rid of the debug tag in the top right of the screen
     );
   }
 }
@@ -32,15 +34,27 @@ class GameScreen extends StatelessWidget {
           children: <Widget>[
             const Text(
               'High Score: 0',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 50),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text(
+
+            SizedBox(//controls the button size
+              width: 300.0,
+              height: 300.0,
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                     RoundedRectangleBorder(//makes the button a circle
+                         borderRadius: BorderRadius.circular(200)
+                     ),
+                   )
+               ),
+                child: const Text(//text in the button
                 'Tap-it!',
-                style: TextStyle(fontSize: 36),
+                style: TextStyle(fontSize: 90),
               ),
+            ),
             ),
           ],
         ),
