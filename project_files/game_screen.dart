@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'game_manager.dart;' //to run core game loop and call functions
 
 //import 'game_over.dart';
 //^ ,not needed now but it will be when functionality is added
@@ -58,5 +59,7 @@ class GameScreen extends StatelessWidget {
         ),
         )
       );
+
   }
+
 } //TEST
