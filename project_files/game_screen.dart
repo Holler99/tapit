@@ -1,65 +1,79 @@
 import 'package:flutter/material.dart';
-import 'game_manager.dart;' //to run core game loop and call functions
+import 'game_manager.dart';
+import 'game_over.dart';
 
-//import 'game_over.dart';
-//^ ,not needed now but it will be when functionality is added
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class GameScreen extends StatefulWidget {
+  const GameScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //^ this gets rid of the debug tag in the top right of the screen
-    );
-  }
+  _GameScreenState createState() => _GameScreenState();
 }
 
-class GameScreen extends StatelessWidget {
-  const GameScreen({super.key});
+class _GameScreenState extends State<GameScreen> {
+  final _gameManager = GameManager();
+
+  @override
+  void initState() {
+    super.initState();
+    _gameManager.startGame(context);
+  }
+
+  @override
+  void dispose() {
+    _gameManager.stopGame();
+    super.dispose();
+  }
+
+  void _onTapButtonPressed() {
+    _gameManager.checkUserInput('tap', context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Tap-it Game'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(
+        title: const Text('Tap-it Game'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const Text(
-              'Score: 0',
-              style: TextStyle(fontSize: 80),
+            Text(
+              'Score: ${_gameManager.score}',
+              style: const TextStyle(fontSize: 80),
             ),
-
-            SizedBox(//controls the button size
-              width: 300.0,
-              height: 300.0,
-              child: ElevatedButton(
-                  onPressed: () {},
+            if (_gameManager.currentCommand == 'tap')
+              SizedBox(
+                width: 300.0,
+                height: 300.0,
+                child: ElevatedButton(
+                  onPressed: _onTapButtonPressed,
                   style: ButtonStyle(
-                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                     RoundedRectangleBorder(//makes the button a circle
-                         borderRadius: BorderRadius.circular(200)
-                     ),
-                   )
-               ),
-                child: const Text(//text in the button
-                'TAP-IT!',
-                style: TextStyle(fontSize: 80),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(200),
+                      ),
+                    ),
+                  ),
+                  child: const Text(
+                    'TAP-IT!',
+                    style: TextStyle(fontSize: 80),
+                  ),
+                ),
               ),
-            ),
-            ),
+            if (_gameManager.currentCommand == 'shake')
+              Text(
+                'SHAKE YOUR PHONE!',
+                style: const TextStyle(fontSize: 80),
+              ),
+            if (_gameManager.currentCommand == 'shout')
+              Text(
+                'SHOUT IT!',
+                style: const TextStyle(fontSize: 80),
+              ),
           ],
         ),
-        )
-      );
-
+      ),
+    );
   }
-
-} //TEST
+}

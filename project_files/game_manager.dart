@@ -1,140 +1,102 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
-import 'package:vibration/vibration.dart';
-import 'dart:async';
 import 'game_over.dart';
-import 'tap_it_gameplay.dart';
-import 'shake_it_gameplay.dart';
-import 'shout_it.dart';
 
-class GameManager extends StatefulWidget {
-  const GameManager({Key? key}) : super(key: key);
+class GameManager {
+  static const List<String> _commands = ['tap', 'shake', 'shout'];
+  static const int _commandDurationSeconds = 5;
 
-  @override
-  _GameManagerState createState() => _GameManagerState();
-}
-
-class _GameManagerState extends State<GameManager> {
-  String currentCommand = "";
-  stt.SpeechToText _speech = stt.SpeechToText();
+  int score = 0;
+  String currentCommand = _getRandomCommand();
+  Timer? commandTimer;
   bool _isListening = false;
-  Timer? _timer;
 
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
+  void startGame(BuildContext context) {
+    score = 0;
+    currentCommand = _getRandomCommand();
+    _startCommandTimer(context);
+    _startListening();
   }
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+  void stopGame() {
+    commandTimer?.cancel();
+    _stopListening();
   }
 
-  void startTimer() {
-    _timer = Timer(Duration(seconds: 5), () {
+  void checkUserInput(String input, BuildContext context) {
+    if (input == currentCommand) {
+      score++;
+      currentCommand = _getRandomCommand();
+      _restartCommandTimer(context);
+    } else {
+      stopGame();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => GameOverScreen(),
-        ),
+        MaterialPageRoute(builder: (context) => GameOverScreen(score: score)),
+      );
+    }
+  }
+
+  void _startCommandTimer(BuildContext context) {
+    commandTimer = Timer(Duration(seconds: _commandDurationSeconds), () {
+      stopGame();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => GameOverScreen(score: score)),
       );
     });
   }
 
-  void resetTimer() {
-    _timer?.cancel();
-    startTimer();
+  void _restartCommandTimer(BuildContext context) {
+    commandTimer?.cancel();
+    _startCommandTimer(context);
   }
 
-  void checkCommand(String command) {
-    resetTimer();
-    setState(() {
-      currentCommand = command;
-    });
-    switch (currentCommand) {
-      case "tap it":
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => TapItScreen()),
-        );
-        break;
-      case "shake it":
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ShakeItScreen()),
-        );
-        break;
-      case "shout it":
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ShoutItScreen()),
-        );
-        break;
-      default:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => GameOverScreen(),
-          ),
-        );
-        break;
+  static String _getRandomCommand() {
+    final randomIndex = _getRandomInt(0, _commands.length - 1);
+    return _commands[randomIndex];
+  }
+
+  static int _getRandomInt(int min, int max) {
+    final random = Random();
+    return min + random.nextInt(max - min + 1);
+  }
+
+  void _startListening() {
+    if (!_isListening) {
+      _isListening = true;
+      accelerometerEvents.listen((AccelerometerEvent event) {
+        if (event.x.abs() > 12 || event.y.abs() > 12 || event.z.abs() > 12) {
+          _onShakeDetected();
+        }
+      });
+      userAccelerometerEvents.listen((UserAccelerometerEvent event) {
+        if (event.x.abs() > 12 || event.y.abs() > 12 || event.z.abs() > 12) {
+          _onShakeDetected();
+        }
+      });
+      gyroscopeEvents.listen((GyroscopeEvent event) {
+        if (event.x.abs() > 3 || event.y.abs() > 3 || event.z.abs() > 3) {
+          _onShakeDetected();
+        }
+      });
     }
   }
 
-  void startListening() {
-    _speech.listen(
-        onResult: (result) {
-          if (result.finalResult) {
-            checkCommand(result.recognizedWords.toLowerCase());
-            stopListening();
-          }
-        },
-        listenFor: Duration(seconds: 5),
-        pauseFor: Duration(seconds: 5),
-        onSoundLevelChange: null,
-        cancelOnError: true,
-        localeId: 'en_US',
-        onDevice: true,
-        partialResults: false,
-        speechMode: stt.SpeechMode.normal,
-        listenMode: stt.ListenMode.confirmation);
-    setState(() {
-      _isListening = true;
-    });
-  }
-
-  void stopListening() {
-    _speech.stop();
-    setState(() {
+  void _stopListening() {
+    if (_isListening) {
       _isListening = false;
-    });
+      accelerometerEvents.drain();
+      userAccelerometerEvents.drain();
+      gyroscopeEvents.drain();
+    }
   }
 
-  void startAccelerometer() {
-    accelerometerEvents.listen((AccelerometerEvent event) {
-      if (event.x > 10) {
-        Vibration.vibrate(duration: 500);
-        checkCommand("shake it");
-      }
-    });
+  void _onShakeDetected() {
+    if (currentCommand == 'shake') {
+      score++;
+      currentCommand = _getRandomCommand();
+    }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    startAccelerometer();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('TAP IT'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-          const Text(
-            'Say the command:',
-            style: TextStyle(fontSize: 20),
-          ),
-
+}
