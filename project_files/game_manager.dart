@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'game_over.dart';
-import 'shake_it.dart';
+import 'shake_it_gameplay.dart';
 import 'microphone.dart';
 class GameManager {
   static const List<String> _commands = ['tap', 'shake', 'shout'];
