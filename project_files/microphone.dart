@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:record/record.dart';
 
-void main() {
+/*void main() {
   runApp(const MaterialApp(home: MicPage()));
-}
+}*/
 
 class MicPage extends StatefulWidget {
   const MicPage({super.key});

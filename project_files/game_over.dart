@@ -5,29 +5,16 @@ import 'main_menu.dart';
 //importing the main menu file so the navigator and button
 //will work despite the two screens being in different files
 
-void main() {
+/*void main() {
   runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,//this isn't working for some reason. works in the other two files, but not this one
-      //^ this gets rid of the debug tag in the top right of the screen
-      home: GameOverScreen(),//had to add this so the navigator would work
-      //because the class needed to be a descendant of
-      //the navigator and my app
-    );
-  }
-}
+}*/
 
 class GameOverScreen extends StatelessWidget{
   const GameOverScreen({super.key});
  @override
  Widget build(BuildContext context) {
    return MaterialApp(
+     debugShowCheckedModeBanner: false,
      home: Scaffold(
        body: Center(
          child: Column(
