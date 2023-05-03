@@ -22,11 +22,11 @@ class ConversationButton extends StatelessWidget {
           height: 60,
           width: double.infinity,
           child: ElevatedButton(
-            onPresed: () {},
+            onPressed: () {  },
             child: Column(
               children: [
                 Align(
-                  alignment: Alignment,topLeft,
+                  alignment: Alignment.topLeft,
                   child: Text(title),
                 ),
               const Padding(padding: EdgeInsets.all(10)),

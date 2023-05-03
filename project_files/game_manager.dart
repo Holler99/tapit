@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:sensors/sensors.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 import 'game_over.dart';
 
 class GameManager {
@@ -33,7 +34,7 @@ class GameManager {
       stopGame();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => GameOverScreen(score: score)),
+        MaterialPageRoute(builder: (context) => GameOverScreen()),
       );
     }
   }
@@ -43,7 +44,7 @@ class GameManager {
       stopGame();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => GameOverScreen(score: score)),
+        MaterialPageRoute(builder: (context) => GameOverScreen()),
       );
     });
   }
