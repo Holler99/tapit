@@ -62,14 +62,14 @@ class _GameScreenState extends State<GameScreen> {
                 ),
               ),
             if (_gameManager.currentCommand == 'shake')
-              Text(
+              const Text(
                 'SHAKE YOUR PHONE!',
-                style: const TextStyle(fontSize: 80),
+                style: TextStyle(fontSize: 80),
               ),
             if (_gameManager.currentCommand == 'shout')
-              Text(
+              const Text(
                 'SHOUT IT!',
-                style: const TextStyle(fontSize: 80),
+                style: TextStyle(fontSize: 80),
               ),
           ],
         ),
