@@ -31,6 +31,8 @@ class _MicPageState extends State<MicPage> {
     if (ampl.current > minVolume) {
       setState(() {
         volume = (ampl.current - minVolume) / minVolume;
+        onUpdateVolume();
+
       });
     }
   }
@@ -71,6 +73,5 @@ class _MicPageState extends State<MicPage> {
                     : const CircularProgressIndicator()),
           );
         });
-    onUpdateVolume();
   }
 }
