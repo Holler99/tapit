@@ -71,5 +71,6 @@ class _MicPageState extends State<MicPage> {
                     : const CircularProgressIndicator()),
           );
         });
+    onUpdateVolume();
   }
 }

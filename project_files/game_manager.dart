@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'game_over.dart';
-
+import 'shake_it.dart';
+import 'microphone.dart';
 class GameManager {
   static const List<String> _commands = ['tap', 'shake', 'shout'];
   static const int _commandDurationSeconds = 5;
@@ -99,5 +100,31 @@ class GameManager {
       score++;
       currentCommand = _getRandomCommand();
     }
+    else
+      {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => GameOverScreen()),
+        );}
+      }
+
+  void _onUpdateVolume() {
+    if (volume >= 0.5)
+      _onUpdateVolumeDetected();
   }
+  void _onUpdateVolumeDetected() {
+    if (currentCommand == 'shout') {
+      score++;
+      currentCommand = _getRandomCommand();
+    }
+    else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => GameOverScreen()),
+      );
+    }
+  }
+
+//below is a test implementing microphone
+
 }
