@@ -34,17 +34,17 @@ class GameManager {
       stopGame();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => GameOverScreen()),
+        MaterialPageRoute(builder: (context) => const GameOverScreen()),
       );
     }
   }
 
   void _startCommandTimer(BuildContext context) {
-    commandTimer = Timer(Duration(seconds: _commandDurationSeconds), () {
+    commandTimer = Timer(const Duration(seconds: _commandDurationSeconds), () {
       stopGame();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => GameOverScreen()),
+        MaterialPageRoute(builder: (context) => const GameOverScreen()),
       );
     });
   }
@@ -103,13 +103,14 @@ class GameManager {
       {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => GameOverScreen()),
+          MaterialPageRoute(builder: (context) => const GameOverScreen()),
         );}
       }
 
   void UpdateVolume() {
-    if (volume >= 0.5)
+    if (volume >= 0.5) {
       _onUpdateVolumeDetected();
+    }
   }
   void _onUpdateVolumeDetected() {
     if (currentCommand == 'shout') {
@@ -119,7 +120,7 @@ class GameManager {
     else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => GameOverScreen()),
+        MaterialPageRoute(builder: (context) => const GameOverScreen()),
       );
     }
   }
