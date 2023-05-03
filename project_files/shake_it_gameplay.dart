@@ -1,5 +1,5 @@
 import 'package:sensors_plus/sensors_plus.dart';
-import 'game_manager.dart'
+import 'game_manager.dart';
 class ShakeIt {
   void listenForShake(Function onShake) {
     accelerometerEvents.listen((AccelerometerEvent event) {
